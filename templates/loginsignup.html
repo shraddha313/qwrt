@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login/Signup Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    .container {
+        width: 300px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .tab {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .tab button {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        outline: none;
+        font-size: 16px;
+    }
+    .tab button.active {
+        border-bottom: 2px solid #007bff;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+   
+<div class="container">
+    <div class="tab">
+        <button id="loginTab" class="active" onclick="showTab('login')">Login</button>
+        <button id="signupTab" onclick="showTab('signup')">Signup</button>
+    </div>
+    <form id="loginForm" style="display:block;" action="/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <a href="/dashboard"><button type="submit" class="btn">Login</button></a>
+        
+    </form>
+    <form id="signupForm" style="display:none;" action="/signup" method="POST">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            
+            <select id="accountType" name="accountType">
+                <option value="">Select Account Type</option>
+                {% for type in account_types %}
+                    <option value="{{ type.account_type_id }}">{{ type.type }}</option>
+                {% endfor %}
+            </select>
+            
+            
+            <select id="role" name="role" >
+                <option value="">Select Role</option>
+                {% for role in roles %}
+                    <option value="{{ role.role_id }}">{{ role.role_name }}</option>
+                {% endfor %}
+            </select>
+            
+            <!-- Update the expertise dropdown in the signup form to populate options dynamically -->
+            
+                <select id="expertise" name="expertise">
+                    <option value="">Select Expertise</option>
+                    {% for expertise in expertises %}
+                        <option value="{{ expertise.expertise_id }}">{{ expertise.expertise_name }}</option>
+                    {% endfor %}
+                </select>
+                
+            
+
+        </div>
+        <div class="form-group" id="companyFields" style="display:none;">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" name="companyName">
+        </div>
+        <div class="form-group" id="industryField" style="display:none;">
+            <label for="industry">Industry:</label>
+            <input type="text" id="industry" name="industry">
+        </div>
+        <a href="/login"><button type="submit" class="btn">Signup</button></a>
+    </form>
+</div>
+<script>
+    function showTab(tabName) {
+        if (tabName === 'login') {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginTab').classList.add('active');
+            document.getElementById('signupTab').classList.remove('active');
+        } else if (tabName === 'signup') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('signupTab').classList.add('active');
+        }
+    }
+    
+    
+</script>
+</body>
+</html>

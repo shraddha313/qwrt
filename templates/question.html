@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Import the 'Nunito' font as you have in your dashboard */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+        /* Basic styling - Match your dashboard where appropriate */
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            color: #212529;
+        }
+
+        .navbar {
+            background-color: #343a40; 
+            color: #adb5bd; 
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            color: #fff; 
+            text-decoration: underline; 
+        }
+
+        h1 {
+            margin-top: 1px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: aliceblue;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            align-items:normal;
+            text-align: start;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+    <div class="container">
+        <h1>Questions</h1>
+        <ul>
+            {% for question in questions %}
+            <li>
+                <strong>{{ question.title }}</strong>
+                <ul>
+                    {% for answer in question.answers %}
+                    <li>{{ answer.content }}</li>
+                    <ul>
+                        {% for comment in answer.comments %}
+                        <li>{{ comment.content }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

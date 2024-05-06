@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: antiquewhite;
+            margin: 0;
+            padding: 0;
+            color: #212529;
+        }
+
+        .error-message {
+            width: 85%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+           background-color: aliceblue;
+        }
+
+        .error-message h1 {
+            color: black;
+        }
+
+        .error-message p {
+            color: #6c757d;
+        }
+
+        .error-message a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .error-message a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <title>Error</title>
+</head>
+<body>
+    <div class="error-message">
+        <h1>An Error Occurred</h1>
+        {% if error %}
+            <p>{{ error.name }}</p>
+            <p>{{ error.description }}</p>
+        {% else %}
+            <p>An unexpected error occurred.</p>
+        {% endif %}
+        <a href="{{ url_for('dashboard') }}">Return to Home</a>
+    </div>
+</body>
+</html>

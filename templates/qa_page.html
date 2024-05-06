@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Import the 'Nunito' font as you have in your dashboard */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+        /* Basic styling - Match your dashboard where appropriate */
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            color: #212529;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #343a40; 
+            color: #adb5bd; 
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #adb5bd;
+            text-decoration: none;
+          
+        }
+
+        .navbar a:hover {
+            color: #fff; 
+            text-decoration: underline; 
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: aliceblue;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            align-items:normal;
+            text-align: start;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <a href="/dashboard">Dashboard</a>
+    </nav>
+    <div class="container">
+        <h1>{{ query_details.title }}</h1>
+        <p>Asked by: {{ query_details.requester_username }} at {{ query_details.created_at }}</p>
+        <p>{{ query_details.description }}</p>
+
+        <form action="{{ url_for('update_question',query_id=query_id) }}" method="post" class="horizontal-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" value="{{ query_details.title }}"><br>
+            <label for="description">Description:</label><br>
+            <input id="description" name="description" value="{{ query_details.description }}"><br>
+            <button type="submit">Update</button>
+        </form>
+
+        <form action="{{ url_for('delete_question',query_id=query_id) }}"  method="post" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit">Delete</button>
+        </form>
+        <h2>Shared with:</h2>
+        {% for shared_query in shared_queries %}
+            <div>
+                <strong>{{ shared_query.username }}</strong>
+                <a href="{{ url_for('view_answers', query_id=query_id, expert_user_id=shared_query.expert_user_id) }}">View Answer</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -399,70 +399,9 @@
       text-decoration: none;
   }
 
-  
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-container {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 320px;
-            text-align: center;
-            margin-top: 200%;
-            margin-right: 25%;
-            
-            
-            
-        }
-        .login-container h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .login-form {
-            margin-top: 20px;
-        }
-
-        .login-form input[type="text"],
-        .login-form input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .login-form input[type="submit"] {
-            background-color: red;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 20%;
-        }
-        .login-form input[type="submit"]:hover {
-            background-color: red;
-        }
-    
+  .container{
+    margin-left: 5%;
+  }
 
   
 
@@ -473,68 +412,196 @@
 
 
     </style>
-  
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name"></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
       
-      
+      <li>
+        <a href="/dashboard">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="/users">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">Users</span>
+     </li>
+     
+      <li>
+        <a href="/questions">
+            <i class='bx bx-question-mark'></i>
+            <span class="links_name">Question</span>
+        </a>
+        <span class="tooltip">Questions</span>
+      </li>
+      <li>
+        <a href="/expertise">
+            <i class='bx bx-brain'></i>
+            <span class="links_name">Expertise</span>
+        </a>
+        <span class="tooltip">Expertise</span>
+      </li>
+    
+      <li>
+        <a href="/service">
+            <i class='bx bx-link-external'></i>
+            <span class="links_name">Service</span>
+        </a>
+        <span class="tooltip">Service</span>
+      </li>
+    
+    
+     
+     
+      <li>
+        <a href="/filter_question">
+            <i class='bx bx-filter'></i>
+            <span class="links_name">Filter</span>
+        </a>
+        <span class="tooltip">Filter Queries</span>
+      </li>
+
+      <li>
+        <a href="/feedback">
+            <i class='bx bx-message-square-detail'></i>
+            <span class="links_name">give Feedback</span>
+        </a>
+        <span class="tooltip">Give fedback</span>
+      </li>
+      <li>
+        <a href="/view-feedback">
+            <i class='bx bx-message-square-check'></i>
+            <span class="links_name"> view feedback</span>
+        </a>
+        <span class="tooltip">view Reviews</span>
+      </li>
+    
+     
+     <li class="profile">
+         <div class="profile-details">
+           
+          
+             
+           </div>
+         </div>
+         <a href="/logout">logout
+           <i class='bx bx-log-out' id="log_out" ></i>
+         </a>
+     </li>
+    </ul>
+  </div>
   <section class="home-section">
         
             
         
 
     <div class="black-box" style="background: white;">
-      <!-- <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
+      <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
           <input type="text" name="search_query" class="search-input" style="padding: 5px 200px;" placeholder="Search...">
           <button type="submit" class="search-btn"><i class='bx bx-search' style="color: red; padding: 8px 10px;"></i></button>
-      </form> -->
-      <!-- <div class="href" style="margin-left: auto; margin-right: 10%;">
+      </form>
+      <div class="href" style="margin-left: auto; margin-right: 10%;">
           {% if is_admin %}
           <a href="/admin_login"><i class='bx bx-log-in' style="color: red;"></i></a> <!-- Add admin login link if user is admin -->
           {% endif %}
           <a href="/admin_approvals"><i class='bx bx-notification' style="color: red;"></i></a>
-      </div> 
+      </div>
   </div>
   
-        <div class="text" >Dashboard
+        <div class="text" style="margin-top: 5%; margin-bottom: 2%;" > Admin Dashboard
 
           
-            <!-- <div class="add" style="text-align: right; ">
-                
-                <button type="submit"  style="background-color: red; color: white; border: none; padding: 10px 20px; margin-top:40px; margin-right: 10px; margin-left: 100px;"><a href="/add" style="color: white; margin-left:10px">Submit Expertise</a></button>
-                {% if 1 in user_roles %}
-                    <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="/submit-query" style="color: white;">Submit Query</a></button>
-                {% endif %}
-            </div> -->
+          <!-- <div class="add" style="text-align: right; ">
+            
+            <button type="submit"  style="background-color: red; color: white; border: none; padding: 10px 20px; margin-top:40px; margin-right: 10px; margin-left: 100px;"><a href="/add" style="color: white; margin-left:10px">Submit Expertise</a></button>
+            {% if 1 in user_roles %}
+                <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="/submit-query" style="color: white;">Submit Query</a></button>
+            {% endif %} -->
+        </div>
         
         
         
         
             
             
-           
-            <main>
-                <div class="login-container">
-                    <h1> Login</h1>
-                    <form action="/login" method="POST" class="login-form">
-                        <!-- <label for="email">Email:</label> -->
-                        <input type="email" id="email" name="email" placeholder="email" required><br><br>
-                        <!-- <label for="password">Password:</label> -->
-                        <input type="password" id="password" name="password" placeholder="password"required><br><br>
-                        <input type="submit" value="Login">
-                         
-                    </form>
-                    <p><a href="/forgotpassword"  style="color: black; margin-bottom: 70px;">Forgot your password?</a></p>
-                    
-                    <!-- <p><a href="/signup">Don't have an account? </a>continue </p>
-                    
-                </div>
-            </main>
+            
+            <script src="https://www.paypal.com/sdk/js?client-id=AYyyrH-ib8gGSsUIY4eBkH61sbGKupv1IVBfv4-F6SguR5I6RT2-kgfpbkAO6qcfDzs-5pU0easNdsok&currency=USD"></script>
 
-            <!-- <footer>
+
+    
+    
+    <div class="container">
+        <h1>Admin Approvals</h1>
+        {% if approvals %}
+            {% for approval in approvals %}
+                <div class="approval-card">
+                    <h3>{{ approval.expertise_name }}</h3>
+                    <p>Submitted by: {{ approval.username }}</p>
+                    <form action="{{ url_for('approve_expertise') }}" method="post">
+                        <input type="hidden" name="admin_approval_id" value="{{ approval.admin_approval_id }}">
+                        <input type="submit" value="Approve" class="btn btn-success">
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No pending approvals found.</p>
+        {% endif %}
+
+        <h2>Approved Expertises</h2>
+        {% if approved_expertises %}
+            <ul>
+                {% for expertise in approved_expertises %}
+                    <li>{{ expertise.expertise_name }} (Approved)</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No approved expertises found.</p>
+        {% endif %}
+
+        <h3>Admin Notifications</h3>
+        <ul>
+            {% for notification in notifications %}
+                <li>
+                    <p>Notification: {{ notification.message }}</p>
+                    <p>Query Title: {{ notification.query_title }}</p>
+                    <p>Query Description: {{ notification.query_description }}</p>
+                    <p>Requested by: {{ notification.requester_username }}</p>
+                    <p>Price: {{ notification.price }}</p>
+                    <p>Answered by: {{ notification.expert_user_id }}</p>
+                    {% for user_detail in notification.user_details %}
+                        <p>Email: {{ user_detail.email }}</p>
+                        <p>Username: {{ user_detail.username }}</p>
+                    {% endfor %}
+                    
+                    {% for card_detail in notification.credit_card_details %}
+                        <p>Card Number: {{ card_detail.card_number }}</p>
+                        <p>Expiration Date: {{ card_detail.expiration_date }}</p>
+                        <p>CVV: {{ card_detail.cvv }}</p>
+                    {% endfor %}
+                    
+                    <form action="{{ url_for('payment_page', admin_notification_id=notification.admin_notification_id) }}" method="get">
+                        <button type="submit" class="btn btn-primary">Process Payment</button>
+                    </form>
+                  
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+            <footer>
                 <div class="footer">
                     <p>&copy; 2024 Your Company. All rights reserved.</p>
                 </div>
-            </footer> -->
-        </div>
+            </footer>
+        
   </section>
   <script>
   let sidebar = document.querySelector(".sidebar");

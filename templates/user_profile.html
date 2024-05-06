@@ -1,3 +1,9 @@
+
+   
+
+    
+
+
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -7,7 +13,9 @@
     
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
    </head>
 <body>
     <style>
@@ -372,6 +380,16 @@
   .home-section a {
       text-decoration: none;
   }
+  .footer {
+           
+           text-align: center;
+           padding: 1px 0;
+           font-size: 0.8em;
+           background-color: #eaeaea;
+           position: fixed;
+           bottom: 0;
+           width: 100%;
+       }
 
   /* Add lines before and after each question */
   .card {
@@ -394,75 +412,16 @@
       right: -20px; /* Adjust right position for after line */
   }
 
+  
+
   /* Optionally, remove underline from all links */
   .home-section a {
       text-decoration: none;
   }
 
-  
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-container {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 320px;
-            text-align: center;
-            margin-top: 200%;
-            margin-right: 25%;
-            
-            
-            
-        }
-        .login-container h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .login-form {
-            margin-top: 20px;
-        }
-
-        .login-form input[type="text"],
-        .login-form input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .login-form input[type="submit"] {
-            background-color: red;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 20%;
-        }
-        .login-form input[type="submit"]:hover {
-            background-color: red;
-        }
-    
+  .container{
+    margin-left: 5%;
+  }
 
   
 
@@ -473,68 +432,204 @@
 
 
     </style>
-  
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name"></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
       
-      
+      <li>
+        <a href="/dashboard">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="/users">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">Users</span>
+     </li>
+     
+      <li>
+        <a href="/questions">
+            <i class='bx bx-question-mark'></i>
+            <span class="links_name">Question</span>
+        </a>
+        <span class="tooltip">Questions</span>
+      </li>
+      <li>
+        <a href="/expertise">
+            <i class='bx bx-brain'></i>
+            <span class="links_name">Expertise</span>
+        </a>
+        <span class="tooltip">Expertise</span>
+      </li>
+    
+      <li>
+        <a href="/service">
+            <i class='bx bx-link-external'></i>
+            <span class="links_name">Service</span>
+        </a>
+        <span class="tooltip">Service</span>
+      </li>
+    
+    
+     
+     
+      <li>
+        <a href="/filter_question">
+            <i class='bx bx-filter'></i>
+            <span class="links_name">Filter</span>
+        </a>
+        <span class="tooltip">Filter Queries</span>
+      </li>
+
+      <li>
+        <a href="/feedback">
+            <i class='bx bx-message-square-detail'></i>
+            <span class="links_name">give Feedback</span>
+        </a>
+        <span class="tooltip">Give fedback</span>
+      </li>
+      <li>
+        <a href="/view-feedback">
+            <i class='bx bx-message-square-check'></i>
+            <span class="links_name"> view feedback</span>
+        </a>
+        <span class="tooltip">view Reviews</span>
+      </li>
+    
+     
+     <li class="profile">
+         <div class="profile-details">
+           
+          
+             
+           </div>
+         </div>
+         <a href="/logout">logout
+           <i class='bx bx-log-out' id="log_out" ></i>
+         </a>
+     </li>
+    </ul>
+  </div>
   <section class="home-section">
         
             
         
 
     <div class="black-box" style="background: white;">
-      <!-- <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
+      <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
           <input type="text" name="search_query" class="search-input" style="padding: 5px 200px;" placeholder="Search...">
           <button type="submit" class="search-btn"><i class='bx bx-search' style="color: red; padding: 8px 10px;"></i></button>
-      </form> -->
-      <!-- <div class="href" style="margin-left: auto; margin-right: 10%;">
+      </form>
+      <div class="href" style="margin-left: auto; margin-right: 10%;">
           {% if is_admin %}
           <a href="/admin_login"><i class='bx bx-log-in' style="color: red;"></i></a> <!-- Add admin login link if user is admin -->
           {% endif %}
           <a href="/admin_approvals"><i class='bx bx-notification' style="color: red;"></i></a>
-      </div> 
+      </div>
   </div>
   
-        <div class="text" >Dashboard
+        <div class="text" style="margin-top: 5%; margin-bottom: 2%;" > User profile
 
-          
-            <!-- <div class="add" style="text-align: right; ">
+            <div class="add" style="text-align: right; ">
+
                 
-                <button type="submit"  style="background-color: red; color: white; border: none; padding: 10px 20px; margin-top:40px; margin-right: 10px; margin-left: 100px;"><a href="/add" style="color: white; margin-left:10px">Submit Expertise</a></button>
-                {% if 1 in user_roles %}
-                    <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="/submit-query" style="color: white;">Submit Query</a></button>
+
+
+
+                <button type="submit" style="background-color: red; color: white; border: none; padding: 10px 20px; margin-top:40px; margin-right: 10px; margin-left: 700px;"><a href="/add" style="color: white; margin-left:10px">Submit Expertise</a></button>
+                        
+                    
+                        
+                <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="/submit-query" style="color: white;">Submit Query</a></button>
+            </div>
+
+              
+
+        <div class="container"  style="font-family: sans-serif; font-size: large;">
+            
+            <p>First Name: {{ user.first_name }}</p>
+            <p>Last Name: {{ user.last_name }}</p>
+            <p>Username: {{ user.username }}</p>
+            <p>Date of Birth: {{ user.date_of_birth }}</p>
+            <p>Date of Registration: {{ user.date_of_registration }}</p>
+            <p>Expertise Areas: {{ ', '.join(expertise) }}</p>
+            <p>Number of Questions Answered: {{ num_answers }}</p>
+
+            <div>
+                {% if session.user_id == user.user_id %}
+                <form action="/upload_cv" method="post" enctype="multipart/form-data">
+                    <label for="cv_resume">Attach CV/Resume:</label>
+                    <input type="file" name="cv_resume" accept=".pdf,.doc,.docx" required>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
                 {% endif %}
-            </div> -->
+            </div>
+            {% if session.user_id == user.user_id %}
+                <form action="/update_credit_card" method="post">
+                    <h3>Credit Card Information</h3>
+                    <label for="card_number">Card Number:</label>
+                    <input type="text" name="card_number" maxlength="16" required>
+                    <label for="expiration_date">Expiration Date:</label>
+                    <input type="text" name="expiration_date" placeholder="MM/YY" required>
+                    <label for="cvv">CVV:</label>
+                    <input type="text" name="cvv" maxlength="3" required>
+                    <button type="submit" class="btn btn-primary">Update Credit Card</button>
+                </form>
+            {% endif %}
+            credit card number :{{credit_card_info.card_number}}
+            expiration date :{{credit_card_info.expiration_date}}
+            cvv:{{credit_card_info.cvv}}
+            
+        
+            <!-- Show upload form only if the user in session matches the profile user -->
+           
+        
+            <!-- Show attached CV/Resume if available -->
+            <!-- Display link to the attached CV/Resume -->
+            {% if cv_resume_path %}
+            <p>Attached CV/Resume: 
+            <a href="{{ url_for('serve_cv', filename=cv_resume_path.split('/')[-1]) }}" target="_blank">
+            {{ user.username }}'s CV
+            </a>
+            </p>
+            {% endif %}
+
+           
+        
+            
+        
+            
+                
+        
+        </div>
         
         
         
         
+        
+            
             
             
            
-            <main>
-                <div class="login-container">
-                    <h1> Login</h1>
-                    <form action="/login" method="POST" class="login-form">
-                        <!-- <label for="email">Email:</label> -->
-                        <input type="email" id="email" name="email" placeholder="email" required><br><br>
-                        <!-- <label for="password">Password:</label> -->
-                        <input type="password" id="password" name="password" placeholder="password"required><br><br>
-                        <input type="submit" value="Login">
-                         
-                    </form>
-                    <p><a href="/forgotpassword"  style="color: black; margin-bottom: 70px;">Forgot your password?</a></p>
-                    
-                    <!-- <p><a href="/signup">Don't have an account? </a>continue </p>
-                    
-                </div>
-            </main>
+    
+        
+    
 
-            <!-- <footer>
-                <div class="footer">
-                    <p>&copy; 2024 Your Company. All rights reserved.</p>
-                </div>
-            </footer> -->
-        </div>
+            
+        <footer>
+            <div class="footer">
+                <p>&copy; 2024   Infoskey.org   All rights reserved.</p>
+            </div>
+        </footer>
+        
   </section>
   <script>
   let sidebar = document.querySelector(".sidebar");

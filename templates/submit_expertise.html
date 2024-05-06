@@ -1,0 +1,16 @@
+<!-- submit_expertise.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit New Expertise</title>
+</head>
+<body>
+    <h1>Submit New Expertise</h1>
+    <form action="{{ url_for('submit_expertise') }}" method="post">
+        <label for="expertise_name">Expertise Name:</label>
+        <input type="text" name="expertise_name" id="expertise_name" required><br>
+        <input type="submit" value="Submit Expertise">
+    </form>
+</body>
+</html>

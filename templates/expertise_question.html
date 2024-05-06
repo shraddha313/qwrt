@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expertise Questions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Import the 'Nunito' font as you have in your dashboard */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+        /* Basic styling - Match your dashboard where appropriate */
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            color: #212529;
+        }
+        .navbar {
+            background-color: #343a40; 
+            color: #adb5bd; 
+            padding: 10px 20px;
+            display: flex;
+            
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #adb5bd;
+            text-decoration: none;
+          
+        }
+
+        .navbar a:hover {
+            color: #fff; 
+            text-decoration: underline; 
+        }
+
+
+        .container {
+            width: 85%;
+            margin:  20px auto;
+            background-color: aliceblue;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            
+        }
+
+        h1 {
+            
+            font-size: 2.5rem;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8em;
+            background-color: #eaeaea;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            
+            <div><a href="/dashboard">Dashboard</a></div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Expertise Questions</h1>
+        <ul>
+            {% for question in questions %}
+                <li>{{ question.title }}</li>
+                <ul>
+                    {% for answer in question.answers %}
+                        <li>{{ answer.content }}</li>
+                        <ul>
+                            {% for comment in answer.comments %}
+                                <li>{{ comment.content }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+    </div>
+    <footer>
+        <div class="footer">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

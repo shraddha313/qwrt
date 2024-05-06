@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Subscription</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Import the 'Poppins' font as you have in your sidebar */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        /* Basic styling - Match your sidebar where appropriate */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #f1f1f1; */
+            color: #212529;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 100px;
+            font-size: 2.5rem;
+        }
+
+        .plan-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .plan {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width: calc(33.33% - 60px);
+            background-color: white; /* Adjust as needed */
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: red;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkred;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        /* Additional styling to match the sidebar */
+        .navbar {
+            /* background-color: white;  */
+            color: #adb5bd; 
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 1px;
+            height: 50px;
+        }
+
+        .navbar a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            color: #fff; 
+            text-decoration: underline; 
+        }
+        /* Additional styling to match the sidebar */
+        .underline-grey-line {
+            height: 1px;
+            background-color: lightgrey;
+            margin-bottom: 50px; /* Adjust as needed */
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        
+    </nav>
+    <div class="underline-grey-line"></div>
+
+    <h1>Plan Subscription</h1>
+
+    <form id="subscriptionForm" method="POST" action="{{ url_for('plan') }}">
+        <div class="plan-container">
+            {% for plan in plans %}
+            <div class="plan" onclick="handlePlanSelection('{{ plan.plan_id }}')">
+                <!-- Change here -->
+                <input type="hidden" id="plan{{ plan.plan_id }}" name="plan_id" value="{{ plan.plan_id }}" required>
+
+                <label for="plan{{ plan.plan_id }}">
+                    <strong>{{ plan.name }}:</strong> {{ plan.description }}
+                    <strong>Price:</strong> ${{ plan.price }}
+                    <strong>Duration:</strong> {{ plan.duration_months }} month(s)
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="Subscribe">
+    </form>
+
+    <script>
+        function handlePlanSelection(planId) {
+            // Deselect all radio buttons
+            var planInputs = document.querySelectorAll('input[type="hidden"]');
+            planInputs.forEach(function(input) {
+                if (input.value !== planId) {
+                    input.removeAttribute('checked');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

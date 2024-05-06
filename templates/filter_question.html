@@ -1,0 +1,41 @@
+<!-- filter_questions.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtered Questions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <a href="/dashboard">Dashboard</a>
+    <h2>Filter Questions</h2>
+
+    <!-- Form to select the filter criteria -->
+    <form action="{{ url_for('filter_question') }}" method="post">
+        <label for="filter_by">Filter By:</label>
+        <select name="filter_by" id="filter_by">
+            <option value="day" {% if filter_by == 'day' %} selected {% endif %}>Last Day</option>
+            <option value="week" {% if filter_by == 'week' %} selected {% endif %}>Last Week</option>
+            <option value="month" {% if filter_by == 'month' %} selected {% endif %}>Last Month</option>
+            <option value="year" {% if filter_by == 'year' %} selected {% endif %}>Last Year</option>
+            <option value="most_rated" {% if filter_by == 'most_rated' %} selected {% endif %}>Most Rated</option>
+            <option value="great_place" {% if filter_by == 'great_place' %} selected {% endif %}>Experts with Great Place</option>
+            <option value="high_price" {% if filter_by == 'high_price' %} selected {% endif %}>Queries with High Price</option>
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+
+    <!-- Display filtered questions -->
+    <h3>Filtered Questions</h3>
+    <ul>
+        {% for question in results %}
+            <li>
+                <h4>{{ question.title }}</h4>
+                <p>{{ question.description }}</p>
+                <p>Asked by user {{ question.Request_user_id }}</p>
+                <p>Created on: {{ question.created_at }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

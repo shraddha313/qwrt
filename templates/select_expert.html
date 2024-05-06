@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Experts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: antiquewhite;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #343a40; 
+            color: #adb5bd; 
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            color: #fff; 
+            text-decoration: underline; 
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: aliceblue;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h3, h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-check {
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+    
+    <div class="container">
+        <h2>Select Experts for Query ID: {{ query_id }}</h2>
+        <p>Added at: {{ query_details.created_at }}</p>
+        <p>Posted by: {{ query_details.Request_user_id }}</p>
+        <h3>Title: {{ query_details.title }}</h3>
+        <h4>Description of Query: {{ query_details.description }}</h4>
+        <form action="{{ url_for('select_expert', query_id=query_id, expertise_id=expertise_id) }}" method="post">
+            {% for expert in experts %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="expert_id" id="expert{{ expert.user_id }}" value="{{ expert.user_id }}">
+                    <label class="form-check-label" for="expert{{ expert.user_id }}">
+                        {{ expert.username }}
+                    </label>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Share Query</button>
+        </form>
+    </div>
+</body>
+</html>

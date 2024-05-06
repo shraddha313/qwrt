@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Import the 'Nunito' font as you have in your dashboard */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+        /* Basic styling - Match your dashboard where appropriate */
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            color: #212529;
+        }
+
+        .navbar {
+            background-color: #343a40; 
+            color: #adb5bd; 
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #adb5bd;
+            text-decoration: none;
+          
+        }
+
+        .navbar a:hover {
+            color: #fff; 
+            text-decoration: underline; 
+        }
+
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            background-color: aliceblue;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: 100%;
+        }
+
+       /* Styling for form elements */
+       .form-group {
+           margin-bottom: 15px; 
+       }
+
+       .form-check-label {
+           margin-left: 5px; 
+       }
+       .footer {
+           
+           text-align: center;
+           padding: 1px 0;
+           font-size: 0.8em;
+           background-color: #eaeaea;
+           position: fixed;
+           bottom: 0;
+           width: 100%;
+       }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function toggleBusinessFields(display) {
+            document.getElementById('businessFields').style.display = display ? 'block' : 'none';
+        }
+
+        function toggleExpertise(checkBox, type) {
+            var expertiseFields = document.getElementsByClassName('expertise-' + type);
+            for (var i = 0; i < expertiseFields.length; i++) {
+                expertiseFields[i].style.display = checkBox.checked ? 'block' : 'none';
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('accountTypeIndividual').addEventListener('change', function() {
+                toggleBusinessFields(false);
+            });
+            
+            document.getElementById('accountTypeBusiness').addEventListener('change', function() {
+                toggleBusinessFields(true);
+            });
+            
+            document.getElementById('roleRequest').addEventListener('change', function(e) {
+                toggleExpertise(e.target, 'request');
+            });
+
+            document.getElementById('roleExpert').addEventListener('change', function(e) {
+                toggleExpertise(e.target, 'expert');
+            });
+        }
+
+        window.onload = setupEventListeners;
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div><a href="/dashboard">Dashboard</a></div>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        <h2 class="mb-4">Update Your Profile</h2>
+        <form action="/ask" method="post">
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="accountTypeIndividual" name="account_type" value="Individual">
+                    <label class="form-check-label" for="accountTypeIndividual">Individual</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="accountTypeBusiness" name="account_type" value="Business">
+                    <label class="form-check-label" for="accountTypeBusiness">Business</label>
+                </div>
+            </div>
+
+            <div id="businessFields" style="display:none;">
+                <div class="form-group">
+                    <label for="company_name">Company Name:</label>
+                    <input type="text" class="form-control" id="company_name" name="company_name">
+                </div>
+                <div class="form-group">
+                    <label for="industry">Industry:</label>
+                    <input type="text" class="form-control" id="industry" name="industry">
+                </div>
+                <div class="form-group">
+                    <label for="business_email">Business Email:</label>
+                    <input type="email" class="form-control" id="business_email" name="business_email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="roleRequest" name="role" value="Request">
+                    <label class="form-check-label" for="roleRequest">Request</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="roleExpert" name="role" value="Expert">
+                    <label class="form-check-label" for="roleExpert">Expert</label>
+                </div>
+            </div>
+
+            <!-- Expertise fields dynamically generated based on user's selection -->
+            
+            <!-- This section will be populated based on user's selection -->
+            <!-- It mirrors the structure of the expertise checkboxes in the first page -->
+
+            {% for expertise in expertise_areas %}
+            <div class="form-group expertise-field expertise-request" style="display:none;">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="expertiseRequest[]" value="{{ expertise.expertise_id }}" id="expertiseRequest{{ expertise.expertise_id }}">
+                    <label class="form-check-label" for="expertiseRequest{{ expertise.expertise_id }}">{{ expertise.name }} (Request)</label>
+                </div>
+            </div>
+            <div class="form-group expertise-field expertise-expert" style="display:none;">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="expertiseExpert[]" value="{{ expertise.expertise_id }}" id="expertiseExpert{{ expertise.expertise_id }}">
+                    <label class="form-check-label" for="expertiseExpert{{ expertise.expertise_id }}">{{ expertise.name }} (Expert)</label>
+                </div>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

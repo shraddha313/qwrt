@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Payment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Process Payment</h1>
+
+    <!-- Display admin credit card details -->
+    <h3>Admin's Credit Card Details</h3>
+    <p>Card Number: ****-****-****-{{ admin_credit_card[-4:] }}</p>  <!-- Display only last 4 digits -->
+    <p>Expiration Date: {{ admin_credit_card_expiration }}</p>
+    <p>CVV: {{ admin_credit_card_cvv }}</p>
+
+    <h1>Confirm Payment</h1>
+    <p>Expert User ID: {{ expert_user_id }}</p>
+    <p>Price: {{ price }}</p>
+    <p>Card Number: {{ credit_card.card_number }}</p>
+    <p>Expiration Date: {{ credit_card.expiration_date }}</p>
+    <p>CVV: {{ credit_card.cvv }}</p>
+
+    <!-- Form for user credit card and payment information -->
+    <form action="/pay" method="post">
+        <h3>User Credit Card Details</h3>
+        <input type="hidden" name="price" value="{{ price }}">
+        <input type="hidden" name="expert_user_id" value="{{ expert_user_id }}">
+        <input type="hidden" name="query_id" value="{{ query_id }}">
+        <label for="card_number">Card Number:</label>
+        <input type="text" name="card_number" maxlength="16" required>
+        <label for="expiration_date">Expiration Date:</label>
+        <input type="text" name="expiration_date" placeholder="MM/YY" required>
+        <label for="cvv">CVV:</label>
+        <input type="text" name="cvv" maxlength="3" required>
+
+        <h3>Payment Information</h3>
+        <p>Price: {{ price }}</p>
+
+        <button type="submit" class="btn btn-primary">Pay</button>
+    </form>
+</body>
+</html>

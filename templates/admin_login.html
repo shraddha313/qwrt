@@ -417,9 +417,9 @@
             padding: 40px;
             width: 320px;
             text-align: center;
-            margin-top: 200%;
+            margin-top: 20%;
             margin-right: 25%;
-            
+            margin-left: 100%;
             
             
         }
@@ -430,21 +430,11 @@
         .login-form {
             margin-top: 20px;
         }
-
-        .login-form input[type="text"],
-        .login-form input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 2px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
         .login-form input[type="text"],
         .login-form input[type="password"] {
             width: 100%;
             padding: 12px;
-            margin-bottom: 2px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
@@ -457,7 +447,6 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-bottom: 20%;
         }
         .login-form input[type="submit"]:hover {
             background-color: red;
@@ -473,25 +462,107 @@
 
 
     </style>
-  
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name"></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
       
-      
+      <li>
+        <a href="/dashboard">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="/users">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">Users</span>
+     </li>
+     
+      <li>
+        <a href="/questions">
+            <i class='bx bx-question-mark'></i>
+            <span class="links_name">Question</span>
+        </a>
+        <span class="tooltip">Questions</span>
+      </li>
+      <li>
+        <a href="/expertise">
+            <i class='bx bx-brain'></i>
+            <span class="links_name">Expertise</span>
+        </a>
+        <span class="tooltip">Expertise</span>
+      </li>
+    
+      <li>
+        <a href="/service">
+            <i class='bx bx-link-external'></i>
+            <span class="links_name">Service</span>
+        </a>
+        <span class="tooltip">Service</span>
+      </li>
+    
+    
+     
+     
+      <li>
+        <a href="/filter_question">
+            <i class='bx bx-filter'></i>
+            <span class="links_name">Filter</span>
+        </a>
+        <span class="tooltip">Filter Queries</span>
+      </li>
+
+      <li>
+        <a href="/feedback">
+            <i class='bx bx-message-square-detail'></i>
+            <span class="links_name">give Feedback</span>
+        </a>
+        <span class="tooltip">Give fedback</span>
+      </li>
+      <li>
+        <a href="/view-feedback">
+            <i class='bx bx-message-square-check'></i>
+            <span class="links_name"> view feedback</span>
+        </a>
+        <span class="tooltip">view Reviews</span>
+      </li>
+    
+     
+     <li class="profile">
+         <div class="profile-details">
+           
+           
+         </div>
+         <a href="/logout">logout
+           <i class='bx bx-log-out' id="log_out" ></i>
+         </a>
+     </li>
+    </ul>
+  </div>
   <section class="home-section">
         
             
         
 
     <div class="black-box" style="background: white;">
-      <!-- <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
+      <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
           <input type="text" name="search_query" class="search-input" style="padding: 5px 200px;" placeholder="Search...">
           <button type="submit" class="search-btn"><i class='bx bx-search' style="color: red; padding: 8px 10px;"></i></button>
-      </form> -->
-      <!-- <div class="href" style="margin-left: auto; margin-right: 10%;">
+      </form>
+      <div class="href" style="margin-left: auto; margin-right: 10%;">
           {% if is_admin %}
           <a href="/admin_login"><i class='bx bx-log-in' style="color: red;"></i></a> <!-- Add admin login link if user is admin -->
           {% endif %}
-          <a href="/admin_approvals"><i class='bx bx-notification' style="color: red;"></i></a>
-      </div> 
+          
+      </div>
+      <a href="/admin_approvals"><i class='bx bx-notification' style="color: red;"></i></a>
   </div>
   
         <div class="text" >Dashboard
@@ -513,19 +584,12 @@
            
             <main>
                 <div class="login-container">
-                    <h1> Login</h1>
-                    <form action="/login" method="POST" class="login-form">
-                        <!-- <label for="email">Email:</label> -->
-                        <input type="email" id="email" name="email" placeholder="email" required><br><br>
-                        <!-- <label for="password">Password:</label> -->
-                        <input type="password" id="password" name="password" placeholder="password"required><br><br>
+                    <h1>Admin Login</h1>
+                    <form action="{{ url_for('admin_login') }}" method="post" class="login-form">
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <input type="submit" value="Login">
-                         
                     </form>
-                    <p><a href="/forgotpassword"  style="color: black; margin-bottom: 70px;">Forgot your password?</a></p>
-                    
-                    <!-- <p><a href="/signup">Don't have an account? </a>continue </p>
-                    
                 </div>
             </main>
 

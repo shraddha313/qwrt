@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expert Profile Update</title>
+    
+    <!-- Include Bootstrap and other styles/scripts if needed -->
+</head>
+<body>
+    <a href="/dashboard">Dashbaord</a>
+    <div class="container mt-5">
+        <h2>Expert Profile Update</h2>
+        <form action="/update-expert-profile" method="post">
+            <input type="text" name="first_name" placeholder="First Name" required><br>
+            <input type="text" name="last_name" placeholder="Last Name" required><br>
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price" required><br>
+            <label for="years_of_experience">Years of Experience:</label>
+            <input type="number" name="years_of_experience" id="years_of_experience" required><br>
+            <label for="details">Details:</label>
+            <textarea name="details" id="details" required></textarea><br>
+            <label for="expertise">Expertise:</label><br>
+            {% for exp in expertise %}
+              {{ exp.name }}<br>
+            {% endfor %}
+            <a href="/dashboard"><button type="submit">SME EXPERT PROFILE</button></a>
+        </form>
+    </div>
+    
+</body>
+</html>

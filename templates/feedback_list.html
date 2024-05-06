@@ -1,0 +1,43 @@
+<!-- feedback_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Feedback</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .feedback-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        .feedback-card h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Feedback</h1>
+        {% for feedback in feedbacks %}
+            <div class="feedback-card">
+                <h3>User: {{ feedback.username }}</h3> <!-- Displaying username -->
+                <p>Submitted on: {{ feedback.date_submitted }}</p> <!-- Displaying date and time -->
+                <p>Rating: {{ feedback.rating }} / 5</p> <!-- Displaying rating -->
+                <p>{{ feedback.feedback_text }}</p> <!-- Displaying feedback text -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

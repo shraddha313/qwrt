@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+</head>
+<body>
+    <h1>Tools</h1>
+    <ul>
+        {% for tool in tools %}
+            <li>{{ tool.tool_name }} - {{ tool.description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

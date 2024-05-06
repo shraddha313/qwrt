@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Dashboard </title>
+    
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+    <style>
+        /* Google Font Link */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins" , sans-serif;
+        }
+        .sidebar{
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 78px;
+        background: white;
+        padding: 6px 14px;
+        z-index: 99;
+        transition: all 0.5s ease;
+        }
+        .sidebar.open{
+        width: 250px;
+        }
+        .sidebar .logo-details{
+        height: 30px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-top:0 ;
+        }
+        .sidebar .logo-details .icon{
+        opacity: 0;
+        transition: all 0.5s ease;
+        }
+        .sidebar .logo-details .logo_name{
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        opacity: 0;
+        transition: all 0.5s ease;
+        }
+        .sidebar.open .logo-details .icon,
+        .sidebar.open .logo-details .logo_name{
+        opacity: 1;
+        }
+        .sidebar .logo-details #btn{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        transition: all 0.4s ease;
+        font-size: 23px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+
+        }
+        .sidebar.open .logo-details #btn{
+        text-align: right;
+        }
+        .sidebar i{
+        color: #fff;
+        height: 10px;
+        min-width: 50px;
+        font-size: 28px;
+        text-align: center;
+        line-height: 60px;
+        }
+        .sidebar .nav-list{
+        margin-top: 20px;
+        height: 100%;
+        }
+        .sidebar li{
+        position: relative;
+        margin: 0 0;
+        list-style: none;
+        }
+        .sidebar li .tooltip{
+        position: absolute;
+        top: -20px;
+        left: calc(100% + 15px);
+        z-index: 3;
+        background: #fff;
+        box-shadow: 0 5px 10px white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 15px;
+        font-weight: 400;
+        opacity: 0;
+        white-space: nowrap;
+        pointer-events: none;
+        transition: 0s;
+        }
+        .sidebar li:hover .tooltip{
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.4s ease;
+        top: 50%;
+        transform: translateY(-50%);
+        }
+        .sidebar.open li .tooltip{
+        display: none;
+        }
+        .sidebar input{
+        font-size: 15px;
+        color: #FFF;
+        font-weight: 400;
+        outline: none;
+        height: 50px;
+        width: 100%;
+        width: 50px;
+        border: none;
+        border-radius: 12px;
+        transition: all 0.5s ease;
+        background: #1d1b31;
+        }
+        .sidebar.open input{
+        padding: 0 20px 0 50px;
+        width: 100%;
+        }
+        .sidebar .bx-search{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        background: #1d1b31;
+        color: #FFF;
+        }
+        .sidebar.open .bx-search:hover{
+        background: #1d1b31;
+        color: #FFF;
+        }
+        .sidebar .bx-search:hover{
+        background: #FFF;
+        color: #11101d;
+        }
+        .sidebar li a{
+        display: flex;
+        height: 70%;
+        width: 100%;
+        border-radius: 12px;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.4s ease;
+        background: white;
+        }
+        .sidebar li a:hover{
+        background: #FFF;
+        }
+        .sidebar li a .links_name{
+        color: #fff;
+        font-size: 15px;
+        font-weight: 400;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s;
+        }
+        .sidebar.open li a .links_name{
+        opacity: 1;
+        pointer-events: auto;
+        }
+        .sidebar li a:hover .links_name,
+        .sidebar li a:hover i{
+        transition: all 0.5s ease;
+        color: white;
+        }
+        .sidebar li i{
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+        border-radius: 12px;
+        }
+        .sidebar li.profile{
+        position: fixed;
+        height: 60px;
+        width: 78px;
+        left: 0;
+        bottom: -8px;
+        padding: 10px 14px;
+        background: white;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        }
+        .sidebar.open li.profile{
+        width: 250px;
+        }
+        .sidebar li .profile-details{
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        }
+        .sidebar li img{
+        height: 45px;
+        width: 45px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 10px;
+        }
+        .sidebar li.profile .name,
+        .sidebar li.profile .job{
+        font-size: 15px;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        }
+        .sidebar li.profile .job{
+        font-size: 12px;
+        }
+        .sidebar .profile #log_out{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        background: white;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        border-radius: 0px;
+        transition: all 0.5s ease;
+        }
+        .sidebar.open .profile #log_out{
+        width: 50px;
+        background: none;
+        }
+        .home-section{
+        position: relative;
+        /* background: rgb(221, 215, 207); */
+        background: white;
+        min-height: 100vh;
+        top: 0;
+        left: 78px;
+        width: calc(100% - 78px);
+        transition: all 0.5s ease;
+        z-index: 2;
+
+        
+
+        
+        
+        
+        }
+        .sidebar.open ~ .home-section{
+        left: 250px;
+        width: calc(100% - 250px);
+        }
+        .home-section .text{
+        display: inline-block;
+        color: #11101d;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 18px
+        }
+
+        .black-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color:rgb(175, 160, 142);
+            
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        @media (max-width: 420px) {
+        .sidebar li .tooltip{
+            display: none;
+        }
+        }
+
+        .horizontal-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .horizontal-form input[type="text"],
+        .horizontal-form textarea {
+            margin-right: 10px;
+        }
+
+        .horizontal-form button {
+            margin-left: 10px;
+        }
+
+        .card {
+        border: 2px solid aliceblue;
+        padding: 20px;
+        margin-bottom: 20px;
+        
+        margin-left: 0%;                    
+        width: 200px;
+        border-radius: 10px;
+
+      }
+
+        .section-title {
+      
+      font-size: 1.5rem; /* Adjust the font size as needed */
+      font-family: 'Poppins', sans-serif; /* Use the desired font family */
+      font-weight: 600; /* Adjust the font weight as needed */
+      color: #333; 
+      margin-bottom: 50px;
+      margin-top: 1px;
+      
+      }
+
+      .question-section  {
+      text-decoration: none;
+       /* Remove underline */
+      }
+
+      /* Add this CSS to remove underline from question title and change color */
+      .question-section .card a {
+      text-decoration: none; /* Remove underline */
+      }
+
+      .question-section .card a h4 {
+      color: rgb(61, 58, 58);
+      font-family: 'arial'; /* Change color of question title */
+      }
+
+      .expert-section .card h3 a {
+          color: rgb(61, 58, 58);
+          font-family: 'arial'; /* Change color of username title */
+      }
+
+      /* Update color of icons to red */
+  .sidebar i {
+      color: red;
+  }
+
+  /* Styling for the black container */
+  .black-box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: white;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 1px solid lightgrey; /* Add light underline */
+  }
+
+  /* Remove underline from links after black box */
+  .home-section a {
+      text-decoration: none;
+  }
+
+  /* Add lines before and after each question */
+  .card {
+      border: 2px solid aliceblue;
+      padding: 20px;
+      margin-bottom: 20px;
+      margin-left: 10%;
+      width: 80%; /* Adjust width as needed */
+      border-radius: 10px;
+      position: relative; /* Add position relative */
+  }
+
+  
+
+  .card::before {
+      left: -20px; /* Adjust left position for before line */
+  }
+
+  .card::after {
+      right: -20px; /* Adjust right position for after line */
+  }
+
+  /* Optionally, remove underline from all links */
+  .home-section a {
+      text-decoration: none;
+  }
+
+  .container{
+    margin-left: 5%;
+  }
+
+  
+
+
+
+
+    
+
+
+    </style>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name"></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      
+      <li>
+        <a href="/dashboard">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="/users">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">Users</span>
+     </li>
+     
+      <li>
+        <a href="/questions">
+            <i class='bx bx-question-mark'></i>
+            <span class="links_name">Question</span>
+        </a>
+        <span class="tooltip">Questions</span>
+      </li>
+      <li>
+        <a href="/expertise">
+            <i class='bx bx-brain'></i>
+            <span class="links_name">Expertise</span>
+        </a>
+        <span class="tooltip">Expertise</span>
+      </li>
+    
+      <li>
+        <a href="/service">
+            <i class='bx bx-link-external'></i>
+            <span class="links_name">Service</span>
+        </a>
+        <span class="tooltip">Service</span>
+      </li>
+    
+    
+     
+     
+      <li>
+        <a href="/filter_question">
+            <i class='bx bx-filter'></i>
+            <span class="links_name">Filter</span>
+        </a>
+        <span class="tooltip">Filter Queries</span>
+      </li>
+
+      <li>
+        <a href="/feedback">
+            <i class='bx bx-message-square-detail'></i>
+            <span class="links_name">give Feedback</span>
+        </a>
+        <span class="tooltip">Give fedback</span>
+      </li>
+      <li>
+        <a href="/view-feedback">
+            <i class='bx bx-message-square-check'></i>
+            <span class="links_name"> view feedback</span>
+        </a>
+        <span class="tooltip">view Reviews</span>
+      </li>
+    
+     
+     <li class="profile">
+         <div class="profile-details">
+           
+          
+             
+           </div>
+         </div>
+         <a href="/logout">logout
+           <i class='bx bx-log-out' id="log_out" ></i>
+         </a>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section">
+        
+            
+        
+
+    <div class="black-box" style="background: white;">
+      <form action="/search" method="GET" class="search-form" style="margin-left: auto; margin-right: 1%;">
+          <input type="text" name="search_query" class="search-input" style="padding: 5px 200px;" placeholder="Search...">
+          <button type="submit" class="search-btn"><i class='bx bx-search' style="color: red; padding: 8px 10px;"></i></button>
+      </form>
+      <div class="href" style="margin-left: auto; margin-right: 10%;">
+          {% if is_admin %}
+          <a href="/admin_login"><i class='bx bx-log-in' style="color: red;"></i></a> <!-- Add admin login link if user is admin -->
+          {% endif %}
+          <a href="/admin_approvals"><i class='bx bx-notification' style="color: red;"></i></a>
+      </div>
+  </div>
+  
+        <div class="text" style="margin-top: 5%; margin-bottom: 2%;" > Admin Dashboard
+
+            <div class="add" style="text-align: right; ">
+
+                
+
+
+
+                <button type="submit" style="background-color: red; color: white; border: none; padding: 10px 20px; margin-top:40px; margin-right: 10px; margin-left: 700px;"><a href="/add" style="color: white; margin-left:10px">Submit Expertise</a></button>
+                        
+                    
+                        
+                <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="/submit-query" style="color: white;">Submit Query</a></button>
+                </div>
+
+                {% if expert_user_id == user_id %}
+                
+                        
+                    
+                        
+                <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="{{ url_for('set_price', query_id=query_id, expert_user_id=expert_user_id) }}" style="color: white;">price</a></button>
+            <!-- Expert's form for submitting or updating the price -->
+              
+            {% endif %}
+        
+            {% if user_id == query_info.Request_user_id %}
+                <!-- Requested user's form for negotiating the price -->
+                <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="{{ url_for('negotiate_price', query_id=query_id,expert_user_id=expert_user_id) }}"style="color: white;">price negotiation</a></button>
+                
+                
+            {% endif %}
+
+          
+          <!-- <div class="add" style="text-align: right; ">
+            
+            <button type="submit"  style="background-color: red; color: white; border: none; padding: 10px 20px; margin-top:40px; margin-right: 10px; margin-left: 100px;"><a href="/add" style="color: white; margin-left:10px">Submit Expertise</a></button>
+            {% if 1 in user_roles %}
+                <button style="background-color: red; color: white; border: none; padding: 10px 20px;"><a href="/submit-query" style="color: white;">Submit Query</a></button>
+            {% endif %} -->
+        </div>
+
+        <div class="container">
+            <h2>{{ query_info.title }}</h2>
+            <p>Asked by: {{ query_info.requester_username }} on {{ query_info.created_at }}</p>
+            <p>Asked by: {{ query_info.Request_user_id }} on {{ query_info.created_at }}</p>
+            <p>{{ query_info.description }}</p>
+            <p>Asked to: {{ expert_user_id }} </p>
+            {{ expert_price_record }} price asked by expert 
+            <!-- Inside your view_answers.html where query details are displayed -->
+            <form action="{{ url_for('report_query', query_id=query_id) }}" method="post">
+                <input type="hidden" name="requested_user_id" value="{{ query_info.Request_user_id }}">
+                <input type="hidden" name="expert_user_id" value="{{ expert_user_id }}">
+                <textarea name="reason" placeholder="Reason for reporting" required></textarea>
+                <button type="submit">Report Query</button>
+            </form>
+
+           
+        
+            
+        
+            <div id="price_approval">
+                {% if expert_user_id == user_id %}
+                    <!-- Expert's section for approving negotiated prices -->
+                    <h3>Price Negotiations:</h3>
+                    <ul>
+                        {% for negotiation in price_negotiations %}
+                            <li>
+                                {{ negotiation.negotiated_price}} - 
+                                <form action="{{ url_for('approve_price', query_id=query_id, expert_user_id=expert_user_id) }}" method="post">
+                                    <input type="hidden" name="negotiation_id" value="{{ negotiation['negotiation_id'] }}">
+                                    <button type="submit">Approve</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        
+            {% if answers_comments %}
+                <div id="accept-reject-answer">
+                    {% if user_id == query_info.Request_user_id %}
+                        <form method="post" action="{{ url_for('accept_answer', query_id=query_id, expert_user_id=expert_user_id) }}">
+                            <button type="submit">Accept Answer</button>
+                        </form>
+                        <form method="post" action="{{ url_for('reject_answer', query_id=query_id, expert_user_id=expert_user_id) }}">
+                            <button type="submit">Reject Answer</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endif %}
+        
+        
+            
+            <div id="answers">
+                <h3>Answers:</h3>
+                {% for answer in answers_comments %}
+                <div class="answer">
+                    <p>Answered by: {{ answer.responder_username }} on {{ answer.answer_created_at }}</p>
+                    <p>{{ answer.answer_content }}</p>
+                    <!-- Check if answer has comments -->
+                    <!-- Add update buttons for answers -->
+                    {% if user_id == answer.user_id %}
+                    <form method="post" action="{{ url_for('update_answer', answer_id=answer.answer_id, query_id=query_id) }}">
+                        <textarea name="new_content" required>{{ answer.content }}</textarea>
+                        <button type="submit">Update</button>
+                    </form>
+                    {% endif %}
+        
+                    <!-- Add delete buttons for answers -->
+                    {% if user_id == answer.user_id %}
+                    <form method="post" action="{{ url_for('delete_answer', answer_id=answer.answer_id, query_id=query_id) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                    {% endif %}
+        
+        
+                    {% if answer.comments %}
+                        <h4>Comments:</h4>
+                        {% for comment in answer.comments %}
+                        <div class="comment">
+                            <p>Comment by: {{ comment.comment_username }} on {{ comment.comment_created_at }}</p>
+                            <p>{{ comment.comment_content }}</p>
+                            <!-- Add update and delete buttons for comments -->
+                            {% if user_id == comment.user_id %}
+                                <form method="post" action="{{ url_for('update_comment', comment_id=comment.comment_id, query_id=query_id) }}">
+                                    <textarea name="new_comment_content" required>{{ comment.comment_content }}</textarea>
+                                    <button type="submit">Update</button>
+                                </form>
+                                <form method="post" action="{{ url_for('delete_comment', comment_id=comment.comment_id, query_id=query_id) }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div id="submit-comment">
+                        <h4>Add a Comment:</h4>
+                        <form method="post" action="{{ url_for('post_comment', answer_id=answer.answer_id, query_id=query_id,expert_user_id=expert_user_id) }}">
+                            <textarea name="comment_content" required></textarea>
+                            <button type="submit">Submit Comment</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        
+            
+                   
+                    
+          
+        
+            
+                    <form method="post" action="{{ url_for('post_answer', query_id=query_id,answer_id=answer_id,expert_user_id=expert_user_id) }}">
+                        <textarea name="content" required></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                
+        
+            
+        
+            <!-- Inside view_answers.html -->
+            <div id="rating-feedback">
+                <h3>Rating & Feedback:</h3>
+                {% if expert_rating %}
+                    <p>Current Rating: {{ expert_rating.rating }}</p>
+                    <p>Current Feedback: {{ expert_rating.message }}</p>
+                {% else %}
+                    <form method="post" action="{{ url_for('submit_rating_feedback', query_id=query_id, expert_user_id=expert_user_id) }}">
+                        <label for="rating">Rating:</label>
+                        <select name="rating" id="rating" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <label for="feedback">Feedback:</label>
+                        <textarea name="feedback" id="feedback" required></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                {% endif %}
+            </div>
+        
+        </div>
+        
+        
+        
+        
+        
+            
+            
+            
+           
+    
+    
+    
+
+            <footer>
+                <div class="footer">
+                    <p>&copy; 2024 Your Company. All rights reserved.</p>
+                </div>
+            </footer>
+        
+  </section>
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+
+   
+</body>
+</html>
